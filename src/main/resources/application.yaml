@@ -1,0 +1,35 @@
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+fusiondataservice:
+  name: My DB Machine Interface
+  connectionString: jdbc:postgresql://localhost:5450/postgres?user=postgres&password=postgres
+  downstreamServiceBaseUrl: http://localhost:9999/
+  dataServiceType: PULL
+  autorun: true
+  jobSpecs:
+    oftendata:
+      period: 2000
+      fields:
+        - source: "select machineserialno from machine.machinestate limit 1"
+          target: SERIAL
+        - source: "select machineactualoperationmode from machine.machinestate limit 1"
+          target: OPMODE
+    seldomdata:
+      period: 2000
+      fields:
+        - source: "select machineserialno from machine.machinestate limit 1"
+          target: SERIAL
+        - source: "select machineactualoperationmode from machine.machinestate limit 1"
+          target: OPMODE
+
