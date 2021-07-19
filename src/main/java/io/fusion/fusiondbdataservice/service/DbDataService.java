@@ -15,7 +15,7 @@
 
 package io.fusion.fusiondbdataservice.service;
 
-import io.fusion.core.FusionDataServiceConfig;
+import io.fusion.core.config.FusionDataServiceConfig;
 import io.fusion.core.exception.JobNotFoundException;
 import io.fusion.core.source.MetricsPullService;
 import lombok.extern.slf4j.Slf4j;

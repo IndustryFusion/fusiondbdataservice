@@ -15,7 +15,7 @@
 
 package io.fusion.fusiondbdataservice.config;
 
-import io.fusion.core.FusionDataServiceConfig;
+import io.fusion.core.config.FusionDataServiceConfig;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
