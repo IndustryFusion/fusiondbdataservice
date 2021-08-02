@@ -42,7 +42,7 @@ public class DbDataService implements MetricsPullService {
     }
 
     @Override
-    public Map<String, String> getMetrics(String jobId) {
+    public Map<String, Object> getMetrics(String jobId) {
         log.info("Fetching metrics for job {}", jobId);
         var jobSpec = fusionDataServiceConfig.getJobSpecs().get(jobId);
         if (jobSpec == null) {
@@ -52,9 +52,9 @@ public class DbDataService implements MetricsPullService {
         var data = jobSpec.getFields().stream().collect(Collectors.toMap(
                 FusionDataServiceConfig.FieldSpec::getTarget,
                 sourceSql -> {
-                    String value;
+                    Object value;
                     try {
-                        value = jdbcTemplate.queryForObject(sourceSql.getSource(), String.class);
+                        value = jdbcTemplate.queryForObject(sourceSql.getSource(), Object.class);
                     } catch (EmptyResultDataAccessException e) {
                         value = "";
                     }
